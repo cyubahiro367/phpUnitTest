@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use PHPUnit\Framework\TestCase;
 
 use function PHPUnit\Framework\assertArrayHasKey;
@@ -9,7 +8,7 @@ class UserTest extends TestCase
 {
     public function testThatWeCanGetTheFirstName()
     {
-        $user = new User;
+        $user = new App\Models\User;
 
         $user->setFirstName('Billy');
 
@@ -18,7 +17,7 @@ class UserTest extends TestCase
 
     public function testThatWeCanGetTheLastName()
     {
-        $user = new User;
+        $user = new App\Models\User;
 
         $user->setLastName('Garett');
 
@@ -27,7 +26,7 @@ class UserTest extends TestCase
 
     public function testFullNameIsReturned()
     {
-        $user = new User;
+        $user = new App\Models\User;
 
         $user->setFirstName('      Billy');
 
@@ -38,7 +37,7 @@ class UserTest extends TestCase
 
     public function testEmailAddressCanBeSet()
     {
-        $user = new User;
+        $user = new App\Models\User;
 
         $user->setEmail('Billy@gmail.com');
 
@@ -47,7 +46,7 @@ class UserTest extends TestCase
 
     public function testEmailVariablesContainCorrectValues()
     {
-        $user = new User;
+        $user = new App\Models\User;
         
         $user->setFirstName('Billy');
 

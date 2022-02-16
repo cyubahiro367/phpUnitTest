@@ -1,6 +1,5 @@
 <?php
 
-use App\Support\Collection;
 use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase
@@ -8,7 +7,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function empty_instatiated_collection_returns_no_items()
     {
-        $collections = new Collection;
+        $collections = new App\Support\Collection;
 
         $this->assertEmpty($collections->get());
     }
@@ -16,7 +15,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function count_is_correct_for_items_passed_in()
     {
-        $collection = new Collection([
+        $collection = new App\Support\Collection([
             'one', 'two', 'three'
         ]);
 
@@ -26,7 +25,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function items_returned_match_items_passed_in()
     {
-        $collection = new Collection([
+        $collection = new App\Support\Collection([
             'one', 'two', 'three'
         ]);
 
@@ -39,14 +38,14 @@ class CollectionTest extends TestCase
     /** @test */
     public function collection_is_instance_of_iterator_aggregate()
     {
-        $collection = new Collection;
+        $collection = new App\Support\Collection;
         $this->assertInstanceOf(IteratorAggregate::class, $collection);
     }
 
     /** @test */
     public function collection_can_be_iterated()
     {
-        $collection = new Collection([
+        $collection = new App\Support\Collection([
             'one', 'two', 'three'
         ]);
         
@@ -63,8 +62,8 @@ class CollectionTest extends TestCase
     /** @test */
     public function collection_can_be_merged_with_another_collection()
     {
-        $collection1 = new Collection(['one', 'two', 'three']);
-        $collection2 = new Collection(['four', 'five']);
+        $collection1 = new App\Support\Collection(['one', 'two', 'three']);
+        $collection2 = new App\Support\Collection(['four', 'five']);
 
         $collection1->merge($collection2);
 
@@ -75,7 +74,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function can_add_to_existing_collection()
     {
-        $collection = new Collection(['one', 'two', 'three']);
+        $collection = new App\Support\Collection(['one', 'two', 'three']);
         $collection->add(['four']);
 
         $this->assertCount(4, $collection->get());
@@ -85,7 +84,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function returns_json_encoded_items()
     {
-        $collection = new Collection([['username'=>'cyubahiro'],['username'=>'theotime']]);
+        $collection = new App\Support\Collection([['username'=>'cyubahiro'],['username'=>'theotime']]);
 
         $this->assertEquals('[{"username":"cyubahiro"},{"username":"theotime"}]', $collection->toJson());
     }
@@ -93,7 +92,7 @@ class CollectionTest extends TestCase
     /** @test */
     public function json_encoding_a_collection_object_returns_json()
     {
-        $collection = new Collection([['username'=>'cyubahiro'],['username'=>'theotime']]);
+        $collection = new App\Support\Collection([['username'=>'cyubahiro'],['username'=>'theotime']]);
 
         $encoded = json_encode($collection);
 
